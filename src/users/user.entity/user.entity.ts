@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 
 import { Exclude } from "class-transformer";
+import { AppointmentsEntity } from "src/appointments/appointments.entity/appointments.entity";
 import { RoleEntity } from "src/roles/role.entity/role.entity";
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('users')
 export class UserEntity {
@@ -41,4 +42,7 @@ export class UserEntity {
     },
 })
     roles: RoleEntity[];
+
+    @OneToMany(() => AppointmentsEntity , appointment => appointment.user)
+    appointments: AppointmentsEntity[];
 }

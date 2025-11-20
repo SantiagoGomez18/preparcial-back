@@ -10,6 +10,9 @@ import { UserEntity } from './users/user.entity/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { AppointmentsModule } from './appointments/appointments.module';
+import { AppointmentsEntity } from './appointments/appointments.entity/appointments.entity';
+import { AppointmentsUserModule } from './appointments-user/appointments-user.module';
 
 
 @Module({
@@ -24,10 +27,12 @@ import { ConfigModule } from '@nestjs/config';
      username: process.env.DB_USER,
      password: process.env.DB_PASS,
      database: process.env.DB_NAME,
-     entities:[UserEntity, RoleEntity],
+     entities:[UserEntity, RoleEntity, AppointmentsEntity],
      dropSchema: false,
      synchronize: false,
    }),
+    AppointmentsModule,
+    AppointmentsUserModule,
  ],
   controllers: [AppController],
   providers: [AppService],
