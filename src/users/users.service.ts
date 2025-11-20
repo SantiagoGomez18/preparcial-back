@@ -22,6 +22,8 @@ export class UsersService {
     }
 
     async getMyUser(id: string): Promise<any> {
+              console.log("id",id);
+
         const user : UserEntity | null = await this.userRepository.findOne({
             where: { id },
             relations: ['roles'],

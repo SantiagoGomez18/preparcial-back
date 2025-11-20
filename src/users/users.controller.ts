@@ -14,8 +14,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Get('me')
   async getMyUser(@Request() req) {
-    console.log('User ID from JWT:', req.user);
-    return this.usersService.getMyUser(req.user.userId);
+    return this.usersService.getMyUser(req.user.id);
   }
 
   @Roles('admin')
